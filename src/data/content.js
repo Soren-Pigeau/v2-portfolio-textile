@@ -11,29 +11,28 @@
 function load(glob) {
   return Object.keys(glob).sort().map((k) => glob[k]);
 }
-const opt = { eager: true, query: '?url', import: 'default' };
 
 // ---- WORK (6 projets) ----
-const wPoseurs   = load(import.meta.glob('../assets/photos/work/1-les-poseurs/*.jpg', opt));
-const wInterieur = load(import.meta.glob('../assets/photos/work/2-interieur/*.jpg', opt));
-const wTissage   = load(import.meta.glob('../assets/photos/work/3-tissage/*.jpg', opt));
-const wWool      = load(import.meta.glob('../assets/photos/work/4-wool-production/*.jpg', opt));
-const wFleur     = load(import.meta.glob('../assets/photos/work/5-fleur-en-strass/*.jpg', opt));
-const wReflect   = load(import.meta.glob('../assets/photos/work/6-reflect-pattern/*.jpg', opt));
+const wPoseurs   = load(import.meta.glob('../assets/photos/work/1-les-poseurs/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const wInterieur = load(import.meta.glob('../assets/photos/work/2-interieur/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const wTissage   = load(import.meta.glob('../assets/photos/work/3-tissage/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const wWool      = load(import.meta.glob('../assets/photos/work/4-wool-production/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const wFleur     = load(import.meta.glob('../assets/photos/work/5-fleur-en-strass/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const wReflect   = load(import.meta.glob('../assets/photos/work/6-reflect-pattern/*.jpg', { eager: true, query: '?url', import: 'default' }));
 
 // ---- BOOK (3 dossiers) ----
-const bAnnees  = load(import.meta.glob('../assets/photos/book/1-1983-2024/*.jpg', opt));
-const b002     = load(import.meta.glob('../assets/photos/book/2-002/*.jpg', opt));
-const bArchive = load(import.meta.glob('../assets/photos/book/3-archives/*.jpg', opt));
+const bAnnees  = load(import.meta.glob('../assets/photos/book/1-1983-2024/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const b002     = load(import.meta.glob('../assets/photos/book/2-002/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const bArchive = load(import.meta.glob('../assets/photos/book/3-archives/*.jpg', { eager: true, query: '?url', import: 'default' }));
 
 // ---- PRINT (placeholders issus de "Intérieur" — à confirmer / remplacer) ----
-const pDos    = load(import.meta.glob('../assets/photos/print/1-interieur-dos/*.jpg', opt));
-const pFace   = load(import.meta.glob('../assets/photos/print/2-interieur-face/*.jpg', opt));
-const pTallud = load(import.meta.glob('../assets/photos/print/3-le-tallud/*.jpg', opt));
+const pDos    = load(import.meta.glob('../assets/photos/print/1-interieur-dos/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const pFace   = load(import.meta.glob('../assets/photos/print/2-interieur-face/*.jpg', { eager: true, query: '?url', import: 'default' }));
+const pTallud = load(import.meta.glob('../assets/photos/print/3-le-tallud/*.jpg', { eager: true, query: '?url', import: 'default' }));
 
 // ---- ABOUT (portrait) ----
 export const aboutPortrait =
-  load(import.meta.glob('../assets/photos/about/*.jpg', opt))[0] || null;
+  load(import.meta.glob('../assets/photos/about/*.jpg', { eager: true, query: '?url', import: 'default' }))[0] || null;
 
 // Textes "info" génériques (à personnaliser par projet)
 const infoTodo = {

@@ -6,7 +6,8 @@
   top: 0;
   z-index: 0;
   height: 100vh;
-  width: 100%;
+  width: 100vw;          /* pleine largeur écran, bord à bord */
+  margin-left: calc(50% - 50vw); /* annule tout décalage éventuel d'un parent */
   overflow: hidden;
   background: #000;
 }
