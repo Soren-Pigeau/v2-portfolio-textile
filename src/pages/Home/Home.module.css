@@ -1,0 +1,54 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  mix-blend-mode: difference;
+  font-size: 1rem;
+  animation: bob 1.8s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Section bio révélée au scroll */
+.bio {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+  background: var(--color-bg);
+}
+.bioInner { max-width: 760px; }
+.bioText {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.42;
+  margin-bottom: 2.25rem;
+}
+.toAbout {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+}
+
+@media (max-width: 768px) {
+  .bio { padding: 4rem 1.5rem; }
+}
