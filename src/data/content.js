@@ -34,6 +34,12 @@ const pTallud = load(import.meta.glob('../assets/photos/print/3-le-tallud/*.jpg'
 export const aboutPortrait =
   load(import.meta.glob('../assets/photos/about/*.jpg', { eager: true, query: '?url', import: 'default' }))[0] || null;
 
+// ---- Pages PDF (portfolio + CV) affichées en images ----
+export const pdfPages = {
+  portfolio: load(import.meta.glob('../assets/pdf/portfolio/*.jpg', { eager: true, query: '?url', import: 'default' })),
+  cv:        load(import.meta.glob('../assets/pdf/cv/*.jpg',        { eager: true, query: '?url', import: 'default' })),
+};
+
 // Textes "info" génériques (à personnaliser par projet)
 const infoTodo = {
   fr: 'Texte de présentation du projet.\nContexte\u2026',

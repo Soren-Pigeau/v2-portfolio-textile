@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import { useLanguage } from '../../i18n/LanguageContext';
 import styles from './Home.module.css';
-import heroImage from '../../assets/photos/work/2-interieur/04-000082260036.jpg';
-// 👆 Pour changer l'image d'accueil, remplace ce chemin par une autre photo
-//    de src/assets/photos/ (ex: .../5-fleur-en-strass/04-dtgarnier04.jpg)
+import heroImage from '../../assets/hero.jpg';
+// 👆 Image d'accueil. Pour la changer, remplace src/assets/hero.jpg
+//    (ou pointe vers une photo de src/assets/photos/...).
 
 export default function Home() {
   const { t } = useLanguage();

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../../components/Layout/Layout';
-import PdfViewer from '../../components/PdfViewer/PdfViewer';
+import PdfPages from '../../components/PdfPages/PdfPages';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { cv, aboutPortrait } from '../../data/content';
 import styles from './About.module.css';
@@ -56,14 +56,15 @@ export default function About() {
           )}
 
           {tab === 'portfolio' && (
-            // Dépose le fichier dans  public/portfolio.pdf
-            <PdfViewer file="portfolio.pdf" downloadLabel={a.portfolioCta} />
+            // Pages affichées en images (propre, sans barre ni cadre).
+            // Le PDF d'origine reste dans public/portfolio.pdf pour le téléchargement.
+            <PdfPages doc="portfolio" downloadLabel={a.portfolioCta} />
           )}
 
           {tab === 'cv' && (
             CV_AS_PDF ? (
-              // Dépose le fichier dans  public/cv.pdf
-              <PdfViewer file="cv.pdf" downloadLabel={a.cvDownload} />
+              // Pages affichées en images (propre). PDF d'origine : public/cv.pdf
+              <PdfPages doc="cv" downloadLabel={a.cvDownload} />
             ) : (
               <div className={styles.cv}>
                 <CvBlock title={a.cvSections.bourses} items={cv.bourses} />
