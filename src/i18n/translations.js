@@ -13,6 +13,16 @@ export const translations = {
     home: {
       bio: "Cyrielle Pigeau vit et travaille à Paris. Sa pratique mêle photographie et savoir-faire textiles (tissage, tapisserie d'ameublement et de haute lice). Elle s'appuie sur l'apprentissage et la transmission pour interroger les dimensions techniques et symboliques de ces techniques en lien avec son propre héritage culturel.",
       toAbout: '→ about',
+      recentEyebrow: 'Œuvres récentes',
+      recentTitle: 'Dernières œuvres réalisées',
+      recentLink: 'Voir tout le travail →',
+    },
+    footer: {
+      eyebrow: 'Contact',
+      title: 'Pour toute demande',
+      subtitle: 'Œuvres disponibles à la vente.\nContact par e-mail uniquement.',
+      button: "Écrire à l'artiste",
+      rights: 'Tous droits réservés',
     },
 
     about: {
@@ -45,6 +55,16 @@ export const translations = {
     home: {
       bio: "Cyrielle Pigeau lives and works in Paris. Her practice combines photography and textile craftsmanship (weaving, upholstery and high-warp tapestry). She draws on learning and transmission to question the technical and symbolic dimensions of these techniques in relation to her own cultural heritage.",
       toAbout: '→ about',
+      recentEyebrow: 'Recent works',
+      recentTitle: 'Latest pieces',
+      recentLink: 'See all work →',
+    },
+    footer: {
+      eyebrow: 'Contact',
+      title: 'Get in touch',
+      subtitle: 'Works available for sale.\nBy email only.',
+      button: 'Email the artist',
+      rights: 'All rights reserved',
     },
 
     about: {

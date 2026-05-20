@@ -40,6 +40,14 @@ export const pdfPages = {
   cv:        load(import.meta.glob('../assets/pdf/cv/*.jpg',        { eager: true, query: '?url', import: 'default' })),
 };
 
+// ---- "Dernières œuvres" affichées sur la page d'accueil ----
+// (3 visuels au choix — modifie les images ou titres ici)
+export const recentWorks = [
+  { img: wPoseurs[2]   ?? wPoseurs[0],   title: 'Les poseurs',     year: '2024' },
+  { img: wInterieur[3] ?? wInterieur[0], title: 'Intérieur',       year: '2024' },
+  { img: wFleur[3]     ?? wFleur[0],     title: 'Fleur en Strass', year: '2025' },
+];
+
 // Textes "info" génériques (à personnaliser par projet)
 const infoTodo = {
   fr: 'Texte de présentation du projet.\nContexte\u2026',
