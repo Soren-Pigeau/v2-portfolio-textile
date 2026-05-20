@@ -28,7 +28,11 @@
   gap: 3rem;
   align-items: start;
 }
-.contact { display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.9rem; }
+.contact { display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem; }
+.contact a, .contact span { display: inline-flex; align-items: center; gap: 0.55rem; }
+.contact :global(.ico) { flex-shrink: 0; opacity: 0.85; }
+.contact a:hover :global(.ico) { opacity: 1; }
+.contact a { transition: opacity 0.2s ease; }
 .bio { max-width: 620px; }
 .bio p { margin-bottom: 0.9rem; font-size: 0.98rem; line-height: 1.65; }
 

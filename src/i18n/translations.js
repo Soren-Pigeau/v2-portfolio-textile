@@ -20,7 +20,8 @@ export const translations = {
       email: 'cyrielle.pigeau@gmail.com',
       instagram: '@_cyrielle_p',
       location: 'Basée à Paris',
-      portfolioCta: 'Télécharger le portfolio (PDF)',
+      portfolioCta: 'Télécharger le portfolio',
+      cvDownload: 'Télécharger le CV',
       bio: "Née à la Rochelle en 2000.\nCyrielle Pigeau vit et travaille à Paris. Elle est diplômée en 2024 du DNSEP Design Textile à la HEAR et du Mastère Spécialisé à l'Institut Français de la Mode. Sa pratique mêle photographie et techniques textiles artisanales (tissage, tapisserie d'ameublement et de haute lice). Son travail a été montré lors d'expositions collectives à la Galerie Octave Cowbell à Metz (2022), au Bastille Design Center (2023). Également artiste VJ, elle co-fonde en 2023 le collectif Fleur en Strass avec lequel elle organise des évènements au DOC (Paris 19) ; à la Filature Scène Nationale (Mulhouse) et au sein de la HEAR (Mulhouse). Dans la poursuite de sa pratique artisanale, elle intègre en septembre 2026 la 4ème édition du programme Homo Faber Fellowship au sein de l'atelier Mérigot Sanzay (Diane Collongues).",
       cvSections: {
         bourses: 'Bourses_Résidences',
@@ -51,7 +52,8 @@ export const translations = {
       email: 'cyrielle.pigeau@gmail.com',
       instagram: '@_cyrielle_p',
       location: 'Based in Paris',
-      portfolioCta: 'Download the portfolio (PDF)',
+      portfolioCta: 'Download the portfolio',
+      cvDownload: 'Download the CV',
       bio: "Born in La Rochelle in 2000.\nCyrielle Pigeau lives and works in Paris. In 2024 she graduated with the DNSEP in Textile Design from HEAR and the Specialised Master's from the Institut Français de la Mode. Her practice combines photography and traditional textile techniques (weaving, upholstery and high-warp tapestry). Her work has been shown in group exhibitions at Galerie Octave Cowbell in Metz (2022) and at the Bastille Design Center (2023). Also a VJ artist, in 2023 she co-founded the Fleur en Strass collective, with which she organises events at DOC (Paris 19), at La Filature Scène Nationale (Mulhouse) and within HEAR (Mulhouse). Continuing her craft practice, in September 2026 she joins the 4th edition of the Homo Faber Fellowship at the Mérigot Sanzay workshop (Diane Collongues).",
       cvSections: {
         bourses: 'Grants_Residencies',

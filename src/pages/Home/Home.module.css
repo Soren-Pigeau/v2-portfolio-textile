@@ -1,13 +1,22 @@
+/* Image plein écran, pleine largeur, AUCUNE marge blanche.
+   position: sticky → elle reste pendant qu'on scrolle, et la bio
+   (au-dessus, opaque) remonte et la recouvre : la photo "part derrière". */
 .hero {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 0;
   height: 100vh;
   width: 100%;
+  overflow: hidden;
+  background: #000;
 }
 
 .heroImg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* remplit tout, jamais de bande blanche */
+  transform-origin: center;
+  will-change: transform, opacity;
 }
 
 .scrollHint {
@@ -25,8 +34,10 @@
   50% { transform: translateX(-50%) translateY(6px); }
 }
 
-/* Section bio révélée au scroll */
+/* Section bio : opaque + au-dessus de l'image (z-index), donc elle la recouvre */
 .bio {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   display: flex;
   align-items: center;

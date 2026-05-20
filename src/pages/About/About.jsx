@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../../components/Layout/Layout';
+import PdfViewer from '../../components/PdfViewer/PdfViewer';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { cv } from '../../data/content';
 import styles from './About.module.css';
+
+// ── Réglage : le CV s'affiche en PDF intégré (true) OU en texte bilingue (false)
+//    Mets false si tu préfères garder la version typographiée FR/EN (dans content.js).
+const CV_AS_PDF = true;
 
 export default function About() {
   const { t } = useLanguage();
@@ -36,9 +41,9 @@ export default function About() {
           {tab === 'infos' && (
             <div className={styles.infos}>
               <div className={styles.contact}>
-                <a href={`mailto:${a.email}`}>{a.email}</a>
-                <a href="https://instagram.com/_cyrielle_p" target="_blank" rel="noreferrer">{a.instagram}</a>
-                <span>{a.location}</span>
+                <a href={`mailto:${a.email}`}><MailIcon /> {a.email}</a>
+                <a href="https://instagram.com/_cyrielle_p" target="_blank" rel="noreferrer"><InstaIcon /> {a.instagram}</a>
+                <span><PinIcon /> {a.location}</span>
               </div>
               <div className={styles.bio}>
                 {a.bio.split('\n').map((line, i) => <p key={i}>{line}</p>)}
@@ -47,23 +52,24 @@ export default function About() {
           )}
 
           {tab === 'portfolio' && (
-            <div className={styles.portfolio}>
-              {/* TODO : déposer le PDF dans /public et pointer le href dessus */}
-              <a className={styles.download} href="/portfolio.pdf" download>
-                {a.portfolioCta}
-              </a>
-            </div>
+            // Dépose le fichier dans  public/portfolio.pdf
+            <PdfViewer file="portfolio.pdf" downloadLabel={a.portfolioCta} />
           )}
 
           {tab === 'cv' && (
-            <div className={styles.cv}>
-              <CvBlock title={a.cvSections.bourses} items={cv.bourses} />
-              <CvBlock title={a.cvSections.expos} items={cv.expos} />
-              <CvBlock title={a.cvSections.freelance} items={cv.freelance} />
-              <CvBlock title={a.cvSections.workshop} items={cv.workshop} />
-              <CvBlock title={a.cvSections.formations} items={cv.formations} />
-              <CvBlock title={a.cvSections.evenements} items={cv.evenements} />
-            </div>
+            CV_AS_PDF ? (
+              // Dépose le fichier dans  public/cv.pdf
+              <PdfViewer file="cv.pdf" downloadLabel={a.cvDownload} />
+            ) : (
+              <div className={styles.cv}>
+                <CvBlock title={a.cvSections.bourses} items={cv.bourses} />
+                <CvBlock title={a.cvSections.expos} items={cv.expos} />
+                <CvBlock title={a.cvSections.freelance} items={cv.freelance} />
+                <CvBlock title={a.cvSections.workshop} items={cv.workshop} />
+                <CvBlock title={a.cvSections.formations} items={cv.formations} />
+                <CvBlock title={a.cvSections.evenements} items={cv.evenements} />
+              </div>
+            )
           )}
         </motion.div>
       </div>
@@ -77,5 +83,35 @@ function CvBlock({ title, items }) {
       <h2 className={styles.cvTitle}>{title}</h2>
       <ul>{items.map((it, i) => <li key={i}>{it}</li>)}</ul>
     </section>
+  );
+}
+
+/* ── Petites icônes (SVG inline, sans dépendance) ── */
+function MailIcon() {
+  return (
+    <svg className="ico" width="15" height="15" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m2 6 10 7L22 6" />
+    </svg>
+  );
+}
+function InstaIcon() {
+  return (
+    <svg className="ico" width="15" height="15" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+    </svg>
+  );
+}
+function PinIcon() {
+  return (
+    <svg className="ico" width="15" height="15" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import { useLanguage } from '../../i18n/LanguageContext';
@@ -7,23 +7,32 @@ import heroImage from '../../assets/images/work3.jpg'; // TODO : image plein éc
 
 export default function Home() {
   const { t } = useLanguage();
+  const { scrollY } = useScroll();
+
+  // Pendant le 1er écran de scroll, l'image recule : léger zoom + fondu + parallaxe.
+  // La section bio (opaque, au-dessus) remonte et la recouvre → "passe derrière".
+  const scale = useTransform(scrollY, [0, 700], [1, 1.12]);
+  const y = useTransform(scrollY, [0, 700], [0, 90]);
+  const opacity = useTransform(scrollY, [0, 600], [1, 0.35]);
+  const hintOpacity = useTransform(scrollY, [0, 150], [1, 0]);
 
   return (
     <Layout variant="overlay">
-      {/* 1. Image pleine page (nom + nav s'affichent par-dessus via le Layout) */}
+      {/* 1. Image pleine page, collée en haut : elle reste pendant qu'on scrolle */}
       <section className={styles.hero}>
         <motion.img
           src={heroImage}
           alt=""
           className={styles.heroImg}
+          style={{ scale, y, opacity }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
         />
-        <span className={styles.scrollHint} aria-hidden="true">↓</span>
+        <motion.span className={styles.scrollHint} style={{ opacity: hintOpacity }} aria-hidden="true">↓</motion.span>
       </section>
 
-      {/* 2. La bio apparaît au scroll et renvoie vers About */}
+      {/* 2. La bio remonte PAR-DESSUS l'image puis la recouvre, et renvoie vers About */}
       <section className={styles.bio}>
         <motion.div
           className={styles.bioInner}
