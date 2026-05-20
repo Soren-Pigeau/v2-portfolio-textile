@@ -1,138 +1,74 @@
 // =============================================================
 //  CONTENU "DONNÉES" — dossiers de projets + CV
-//  C'est ici que Cyrielle remplace les images et les textes.
-//  Les photos work1/2/3.jpg sont des PLACEHOLDERS (le cahier des
-//  charges précise que les vraies photos arrivent plus tard).
+//  Les images sont chargées automatiquement depuis
+//  src/assets/photos/<section>/<dossier>/  via import.meta.glob.
+//  → Pour AJOUTER / RETIRER une photo : dépose / supprime le
+//    fichier dans le bon dossier, rien d'autre à modifier.
+//  → L'ordre suit le nom de fichier (préfixe 01-, 02-, ...).
 // =============================================================
 
-import work1 from '../assets/images/work1.jpg';
-import work2 from '../assets/images/work2.jpg';
-import work3 from '../assets/images/work3.jpg';
+// Charge un dossier d'images, trié par nom de fichier
+function load(glob) {
+  return Object.keys(glob).sort().map((k) => glob[k]);
+}
+const opt = { eager: true, query: '?url', import: 'default' };
 
-// --- Pages WORK / PRINT / BOOK -------------------------------
-// Chaque "section" = 3 dossiers. Chaque dossier a :
-//   - title : nom affiché sous la vignette
-//   - cover : image de couverture (vignette)
-//   - photos : les images qui défilent quand on entre dans le dossier
-//   - info   : objet { fr, en } affiché quand on clique sur "Infos"
-//
-// TODO Cyrielle : remplace les images placeholder et complète
-// les textes "info" de chaque projet.
+// ---- WORK (6 projets) ----
+const wPoseurs   = load(import.meta.glob('../assets/photos/work/1-les-poseurs/*.jpg', opt));
+const wInterieur = load(import.meta.glob('../assets/photos/work/2-interieur/*.jpg', opt));
+const wTissage   = load(import.meta.glob('../assets/photos/work/3-tissage/*.jpg', opt));
+const wWool      = load(import.meta.glob('../assets/photos/work/4-wool-production/*.jpg', opt));
+const wFleur     = load(import.meta.glob('../assets/photos/work/5-fleur-en-strass/*.jpg', opt));
+const wReflect   = load(import.meta.glob('../assets/photos/work/6-reflect-pattern/*.jpg', opt));
+
+// ---- BOOK (3 dossiers) ----
+const bAnnees  = load(import.meta.glob('../assets/photos/book/1-1983-2024/*.jpg', opt));
+const b002     = load(import.meta.glob('../assets/photos/book/2-002/*.jpg', opt));
+const bArchive = load(import.meta.glob('../assets/photos/book/3-archives/*.jpg', opt));
+
+// ---- PRINT (placeholders issus de "Intérieur" — à confirmer / remplacer) ----
+const pDos    = load(import.meta.glob('../assets/photos/print/1-interieur-dos/*.jpg', opt));
+const pFace   = load(import.meta.glob('../assets/photos/print/2-interieur-face/*.jpg', opt));
+const pTallud = load(import.meta.glob('../assets/photos/print/3-le-tallud/*.jpg', opt));
+
+// ---- ABOUT (portrait) ----
+export const aboutPortrait =
+  load(import.meta.glob('../assets/photos/about/*.jpg', opt))[0] || null;
+
+// Textes "info" génériques (à personnaliser par projet)
+const infoTodo = {
+  fr: 'Texte de présentation du projet.\nContexte\u2026',
+  en: 'Project description.\nContext\u2026',
+};
+const infoTirage = {
+  fr: 'Tirage unique\nArgentique tiré chez Glory Lab sur papier Fujifilm DPII Glossy',
+  en: 'Single print\nFilm print made at Glory Lab on Fujifilm DPII Glossy paper',
+};
 
 export const sections = {
   work: [
-    {
-      slug: 'les-poseurs',
-      title: 'Les poseurs',
-      year: '2024',
-      cover: work1,
-      photos: [work1, work2, work3],
-      info: {
-        fr: 'Texte de présentation du projet.\nContexte\u2026',
-        en: 'Project description.\nContext\u2026',
-      },
-    },
-    {
-      slug: 'interieurs-tapissees',
-      title: 'Intérieurs tapissées',
-      cover: work2,
-      photos: [work2, work3, work1],
-      info: {
-        fr: 'Texte de présentation du projet.\nContexte\u2026',
-        en: 'Project description.\nContext\u2026',
-      },
-    },
-    {
-      slug: 'tissages',
-      title: 'Tissages',
-      cover: work3,
-      photos: [work3, work1, work2],
-      info: {
-        fr: 'Texte de présentation du projet.\nContexte\u2026',
-        en: 'Project description.\nContext\u2026',
-      },
-    },
+    { slug: 'les-poseurs',     title: 'Les poseurs', year: '2024', photos: wPoseurs,   cover: wPoseurs[2]   ?? wPoseurs[0],   info: infoTodo },
+    { slug: 'interieur',       title: 'Intérieur',                 photos: wInterieur, cover: wInterieur[3] ?? wInterieur[0], info: infoTodo },
+    { slug: 'tissage',         title: 'Tissage',                   photos: wTissage,   cover: wTissage[0],                    info: infoTodo },
+    { slug: 'wool-production', title: 'Wool production',           photos: wWool,      cover: wWool[0],                       info: infoTodo },
+    { slug: 'fleur-en-strass', title: 'Fleur en Strass',           photos: wFleur,     cover: wFleur[3]    ?? wFleur[0],      info: infoTodo },
+    { slug: 'reflect-pattern', title: 'Reflect Pattern',           photos: wReflect,   cover: wReflect[0],                    info: infoTodo },
   ],
 
   print: [
-    {
-      slug: 'interieur-dos',
-      title: 'Intérieur dos',
-      cover: work1,
-      photos: [work1, work2],
-      // Exemple de fiche tirage repris du cahier des charges :
-      info: {
-        fr: 'Tirage unique\nArgentique tiré chez Glory Lab sur papier Fujifilm DPII Glossy',
-        en: 'Single print\nFilm print made at Glory Lab on Fujifilm DPII Glossy paper',
-      },
-      orderable: true, // affiche "Envoyer un mail pour commander"
-    },
-    {
-      slug: 'interieur-face',
-      title: 'Intérieur face',
-      cover: work2,
-      photos: [work2, work1],
-      info: {
-        fr: 'Tirage unique\nArgentique tiré chez Glory Lab sur papier Fujifilm DPII Glossy',
-        en: 'Single print\nFilm print made at Glory Lab on Fujifilm DPII Glossy paper',
-      },
-      orderable: true,
-    },
-    {
-      slug: 'le-tallud',
-      title: 'Le Tallud',
-      cover: work3,
-      photos: [work3, work1],
-      info: {
-        fr: 'Tirage unique\nArgentique tiré chez Glory Lab sur papier Fujifilm DPII Glossy',
-        en: 'Single print\nFilm print made at Glory Lab on Fujifilm DPII Glossy paper',
-      },
-      orderable: true,
-    },
+    { slug: 'interieur-dos',  title: 'Intérieur dos',  photos: pDos,    cover: pDos[0],    info: infoTirage, orderable: true },
+    { slug: 'interieur-face', title: 'Intérieur face', photos: pFace,   cover: pFace[0],   info: infoTirage, orderable: true },
+    { slug: 'le-tallud',      title: 'Le Tallud',      photos: pTallud, cover: pTallud[0], info: infoTirage, orderable: true },
   ],
 
   book: [
-    {
-      slug: '1983-2024',
-      title: '1983-2024',
-      cover: work1,
-      photos: [work1, work2, work3],
-      info: {
-        fr: 'Texte de présentation du projet.\nContexte\u2026',
-        en: 'Project description.\nContext\u2026',
-      },
-      orderable: true,
-    },
-    {
-      slug: '002',
-      title: '002',
-      cover: work2,
-      photos: [work2, work3],
-      info: {
-        fr: 'Texte de présentation du projet.\nContexte\u2026',
-        en: 'Project description.\nContext\u2026',
-      },
-      orderable: true,
-    },
-    {
-      slug: 'archives',
-      title: 'Archives',
-      cover: work3,
-      photos: [work3, work1, work2],
-      info: {
-        fr: 'Texte de présentation du projet.\nContexte\u2026',
-        en: 'Project description.\nContext\u2026',
-      },
-      orderable: true,
-    },
+    { slug: '1983-2024', title: '1983-2024', photos: bAnnees,  cover: bAnnees[1] ?? bAnnees[0], info: infoTodo, orderable: true },
+    { slug: '002',       title: '002',       photos: b002,     cover: b002[0],                  info: infoTodo, orderable: true },
+    { slug: 'archives',  title: 'Archives',  photos: bArchive, cover: bArchive[0],              info: infoTodo, orderable: true },
   ],
 };
 
-// --- CV ------------------------------------------------------
-// ⚠️ À VÉRIFIER : transcrit depuis le PDF, dont le texte est en
-// partie illisible. Cyrielle doit recoller son CV exact ici.
-// Les noms propres ne se traduisent pas → mêmes entrées FR/EN,
-// seuls les titres de rubrique changent (gérés dans translations.js).
+// --- CV (inchangé) — à VÉRIFIER, transcrit du PDF ---
 export const cv = {
   bourses: [
     '2026 — Homo Faber Fellowship, Fondation Michelangelo, avec l\u2019atelier Mérigot Sanzay. Venise – Paris.',

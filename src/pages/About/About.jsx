@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Layout from '../../components/Layout/Layout';
 import PdfViewer from '../../components/PdfViewer/PdfViewer';
 import { useLanguage } from '../../i18n/LanguageContext';
-import { cv } from '../../data/content';
+import { cv, aboutPortrait } from '../../data/content';
 import styles from './About.module.css';
 
 // ── Réglage : le CV s'affiche en PDF intégré (true) OU en texte bilingue (false)
@@ -47,6 +47,10 @@ export default function About() {
               </div>
               <div className={styles.bio}>
                 {a.bio.split('\n').map((line, i) => <p key={i}>{line}</p>)}
+                {/* Portrait — Cyrielle était indécise dessus : à retirer si besoin */}
+                {aboutPortrait && (
+                  <img src={aboutPortrait} alt="Cyrielle Pigeau" className={styles.portrait} />
+                )}
               </div>
             </div>
           )}
