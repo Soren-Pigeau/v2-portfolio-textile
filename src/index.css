@@ -1,10 +1,21 @@
+/* 1. Déclaration de votre police unique */
+@font-face {
+  font-family: 'Bilo';
+  src: url('/fonts/bilo.otf') format('opentype'); /* format 'opentype' pour les fichiers .otf */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. Configuration des variables globales */
 :root {
-  --color-bg: #f7f5f1;
+  --color-bg: #ffffff; /* Le site passe entièrement en blanc */
   --color-text: #2a2a2a;
   --color-muted: #6c6c6c;
   --color-line: #d9d5cd;
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Application de la police Bilo partout */
+  --font-display: 'Bilo', sans-serif;
+  --font-body: 'Bilo', sans-serif;
 }
 
 *,
@@ -19,7 +30,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow-x: hidden; /* aucune bande blanche / scroll horizontal parasite */
+  overflow-x: hidden;
 }
 
 #root {
@@ -30,7 +41,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: normal; /* Utilise le poids unique disponible */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
